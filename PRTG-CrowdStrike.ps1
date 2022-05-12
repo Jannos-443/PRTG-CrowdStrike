@@ -61,13 +61,13 @@ if(-not ((Test-FalconToken).Token))
 #Start Region CrowdScore
     #CrowdScore Latest
 
-    $Scores = Get-FalconScore -Sort timestamp.desc -Limit 6 
+    $Scores = Get-FalconScore -Sort timestamp.desc -Limit 6
     $CrowdScore = $Scores | Select-Object -First 1 -ExpandProperty Score
     $xmlOutput = $xmlOutput + "<result>
         <channel>CrowdScore</channel>
         <value>$($CrowdScore)</value>
         <unit>Count</unit>
-        </result>"	
+        </result>"
 
 
     #Crowdstore adjusted last hour
@@ -76,7 +76,7 @@ if(-not ((Test-FalconToken).Token))
         <channel>CrowdScore changed last hour</channel>
         <value>$($Crowdscore_Changed)</value>
         <unit>Count</unit>
-        </result>"	
+        </result>"
 #End Region CrowdScore
 
 
@@ -117,7 +117,7 @@ if(-not ((Test-FalconToken).Token))
         <limitmode>1</limitmode>
         <LimitMaxError>0</LimitMaxError>
         </result>
-        "	
+        "
 #End Region Detections
 
 
@@ -130,15 +130,15 @@ if(-not ((Test-FalconToken).Token))
         <unit>Count</unit>
         <limitmode>1</limitmode>
         <LimitMaxError>0</LimitMaxError>
-        </result>"	
+        </result>"
 #End Region Incidents
 
 #Start Region Quarantine
-    $Quarantine = Get-FalconQuarantine -Total
-
+    $QuarantineFiles = Get-FalconQuarantine -All -Detailed | Where-Object {$_.state -ne "deleted"}
+    $QuarantineFilesCount = ($QuarantineFiles | Measure-Object).Count
     $xmlOutput = $xmlOutput + "<result>
         <channel>Quarantine Files</channel>
-        <value>$($Quarantine)</value>
+        <value>$($QuarantineFilesCount)</value>
         <unit>Count</unit>
         <limitmode>1</limitmode>
         <LimitMaxError>0</LimitMaxError>

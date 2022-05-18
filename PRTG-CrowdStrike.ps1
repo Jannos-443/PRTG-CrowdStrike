@@ -148,8 +148,10 @@ if(-not ((Test-FalconToken).Token))
 
 #Start Region Clients
     $Hosts_Total = Get-FalconHost -Total
-    $date = ((Get-Date).AddDays(-30)).ToString("yyyy-MM-dd")
-    $Host_LastSeen = Get-FalconHost -Filter "last_seen:<=`'$($date)`'" -Total
+    $Date_LastSeen = ((Get-Date).AddDays(-30)).ToString("yyyy-MM-dd")
+    $Date_FirstSeen = ((Get-Date).AddDays(-2)).ToString("yyyy-MM-dd")
+    $Host_LastSeen = Get-FalconHost -Filter "last_seen:<=`'$($Date_LastSeen)`'" -Total
+    $Host_FirstSeen = Get-FalconHost -Filter "first_seen:>`'$($Date_FirstSeen)`'" -Total
 
     $xmlOutput = $xmlOutput + "<result>
         <channel>Hosts Total</channel>
@@ -157,8 +159,13 @@ if(-not ((Test-FalconToken).Token))
         <unit>Count</unit>
         </result>
         <result>
-        <channel>Host lastseen > 30 Days</channel>
+        <channel>Hosts lastseen older 30 Days</channel>
         <value>$($Host_LastSeen)</value>
+        <unit>Count</unit>
+        </result>
+        <result>
+        <channel>Hosts firstseen newer 2 Days</channel>
+        <value>$($Host_FirstSeen)</value>
         <unit>Count</unit>
         </result>"
 

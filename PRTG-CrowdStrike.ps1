@@ -145,6 +145,18 @@ if(-not ((Test-FalconToken).Token))
         </result>"
 #End Region Quarantine
 
+# Start Region Duplicates
+    $HostsDuplicates = Find-FalconDuplicate
+    $HostsDuplicatesCount = ($HostsDuplicates.hostname).count
+        
+    $xmlOutput = $xmlOutput + "<result>
+        <channel>Hosts Duplicates</channel>
+        <value>$($HostsDuplicatesCount)</value>
+        <unit>Count</unit>
+        <limitmode>1</limitmode>
+        <LimitMaxError>0</LimitMaxError>
+        </result>"
+#End Region Duplicates
 
 #Start Region Clients
     $Hosts_Total = Get-FalconHost -Total

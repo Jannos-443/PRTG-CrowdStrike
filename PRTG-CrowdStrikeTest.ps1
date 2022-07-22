@@ -173,7 +173,7 @@ $xmlOutput += "<result>
 # Start Region Duplicates
 $HostsDuplicates = Find-FalconDuplicate
 $HostsDuplicatesHostnames = $HostsDuplicates.hostname | Select-Object -Unique
-$HostsDuplicatesCount = ($HostsDuplicatesHostname | Measure-Object).Count
+$HostsDuplicatesCount = ($HostsDuplicatesHostnames | Measure-Object).Count
 
 if ($HostsDuplicatesCount -gt 0) {
     $HostsDuplicatesText = "Duplicate Hosts: "
@@ -183,7 +183,6 @@ if ($HostsDuplicatesCount -gt 0) {
     $OutputText += $HostsDuplicatesText
 }
 
-#$HostsDuplicatesCount = ($HostsDuplicates.hostname).count
 $xmlOutput += "<result>
     <channel>Hosts Duplicates</channel>
     <value>$($HostsDuplicatesCount)</value>

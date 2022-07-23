@@ -1,3 +1,36 @@
+<#   
+    .SYNOPSIS
+    Monitors Crowdstrike Status
+
+    .DESCRIPTION
+    Using Crowdstrike API this Script shows the Crowdstrike Status
+
+    Copy this script to the PRTG probe EXEXML scripts folder (${env:ProgramFiles(x86)}\PRTG Network Monitor\Custom Sensors\EXEXML)
+    and create a "EXE/Script Advanced. Choose this script from the dropdown and set at least:
+
+    + Parameters: ClientId, ClientSecret, CloudUrl
+    + Scanning Interval: minimum 15 minutes
+
+    .PARAMETER CloudUrl
+    Provide the Crowdstrike API Url
+
+    .PARAMETER ClientId
+    Provide the Crowdstrike API Client ID
+
+    .PARAMETER ClientSecret
+    Provide the Crowdstrike API Client Secret
+
+    .EXAMPLE
+    Sample call from PRTG EXE/Script Advanced
+
+    "PRTG-CrowdStrike.ps1 -ClientId "YourCrowdStrikeAPIClientID" -ClientSecret "YourCrowdStrikeAPIClientSecret" -CloudUrl "https://api.eu-1.crowdstrike.com"
+
+    CrowdStrike API Permission:
+    devices:read, incidents:read, detects:read and quarantine:read
+
+    Author:  Jannos-443
+    https://github.com/Jannos-443/PRTG-CrowdStrike
+#>
 param(
     [string]$CloudUrl = "https://api.eu-1.crowdstrike.com",
     [string]$ClientId = '',

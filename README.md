@@ -15,10 +15,10 @@ Free and open source: [MIT License](https://github.com/Jannos-443/PRTG-CrowdStri
    
    - add new API/Token
 
-   - You need "devices:read, incidents:read, detects:read and quarantine:read" permission
+   - permission: devices:read, incidents:read, detects:read and quarantine:read
    
 
-2. Make sure the FalconPS Powershell Module exists on the Probe
+2. Make sure the FalconPS Powershell Module exists on the Probe and is up to date
    - https://github.com/CrowdStrike/psfalcon/wiki
 
 
@@ -30,12 +30,12 @@ Free and open source: [MIT License](https://github.com/Jannos-443/PRTG-CrowdStri
    | Parameters | -ClientId "YourCrowdStrikeAPIClientID" -ClientSecret "YourCrowdStrikeAPIClientSecret"|
    | Scanning Interval | 30 minutes |
 
-Default API Hostname is "https://api.eu-1.crowdstrike.com" use -Hostname to change it to your Cloud
+Default API CloudUrl is "https://api.eu-1.crowdstrike.com" use -CloudUrl to change it to your Cloud
 
 ## Usage
 
 ```powershell
-PRTG-CrowdStrike.ps1 -ClientId "YourCrowdStrikeAPIClientID" -ClientSecret "YourCrowdStrikeAPIClientSecret" -Hostname "https://api.eu-1.crowdstrike.com"
+PRTG-CrowdStrike.ps1 -ClientId "YourCrowdStrikeAPIClientID" -ClientSecret "YourCrowdStrikeAPIClientSecret" -CloudUrl "https://api.eu-1.crowdstrike.com"
 ```
 
 ![PRTG-CrowdStrike](media/ok.png)

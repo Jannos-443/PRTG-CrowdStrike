@@ -41,3 +41,5 @@ PRTG-CrowdStrike.ps1 -ClientId "YourCrowdStrikeAPIClientID" -ClientSecret "YourC
 ![PRTG-CrowdStrike](media/ok.png)
 
 ![PRTG-CrowdStrike](media/warning.png)
+
+![PRTG-CrowdStrike](media/error.png)
